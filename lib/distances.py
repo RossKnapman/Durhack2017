@@ -8,6 +8,7 @@ def find_nearest_bike_parking(point):
         thisrack = haversine(point,rack)
         if thisrack < distance:
             distance = thisrack # its closest we've found
+            #print rack, distance
         
     return distance
 
@@ -18,10 +19,12 @@ def haversine(a,b):
     longa = math.radians(a[1])
     latb = math.radians(b[0])
     longb = math.radians(b[1])
-    dlat = lata-latb
-    dlong = longa-longb
+    dlat = latb-lata
+    dlong = longb-longa
     
-    a = math.sin(dlat/2)**2 + math.cos(lata)*math.cos(latb) + math.sin(dlong/2)**2
+    print lata,longa,latb,longb,dlat,dlong
+    
+    a = math.sin(dlat/2)**2 + math.cos(lata)*math.cos(latb) * math.sin(dlong/2)**2
     
     c = 2 * math.atan2(math.sqrt(a),math.sqrt(1-a))
     
