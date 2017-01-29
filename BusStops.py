@@ -1,7 +1,14 @@
 import osmread
 import numpy as np
 import itertools
+import xml.etree.ElementTree as ET
 
+
+def getNodeDist(startNode, endNode):
+    
+    """ Returns the as-the-crow-flies distance between two nodes """
+    
+    return np.sqrt((startNode.lat - endNode.lat)**2 + (startNode.lon - endNode.lon)**2)
 
 
 def getNodes(latStart, longStart, latEnd, longEnd, mapData, tolerance):
@@ -10,12 +17,9 @@ def getNodes(latStart, longStart, latEnd, longEnd, mapData, tolerance):
     
     it1, it2 = itertools.tee(mapData, 2)  # Allows you to iterate over the generator (mapData) several times
     
-#    entities1 = []
-#    for entity in it1:
-#        if isinstance(entity, osmread.Way) and "highway" in entity.tags:
-#            for attribute in entity:
-#                print(attribute)
-#        entities1.append(entity)
+    entities1 = []
+    for entity in it1:
+        entities1.append(entity)
         
     entities2 = []
     for entity in it2:
@@ -42,6 +46,33 @@ def getNodes(latStart, longStart, latEnd, longEnd, mapData, tolerance):
     return startNode, endNode
     
     
+def findNearestBusStop(inputNode):
+    
+    """ Returns the nearest bus stop to the input node """
+    
+    busStops = []  # Empty list to store nodes representing bus stops   
+    
+    mapData = osmread.parse_file("trimmed.osm")    
+    
+    bus = 0
+    for entity in mapData:
+        if isinstance(entity, osmread.Node) and "bus_stop" in entity.tags:
+            print("Found bus stop")
+            busStops.append(entity)
+            bus += 1
+    print("Bus", bus)
+        
+    shortestDistance = 100
+    for busStop in busStops:
+        distance = getNodeDist(inputNode, busStop)
+        if distance < shortestDistance:
+            shortestDistance = distance
+            closestBusStop = busStop
+            
+    return closestBusStop
+    
+    
 if __name__ == "__main__":
-    mapData = osmread.parse_file("map.osm")
-    getNodes(53.798395, -1.547876, 53.790613, -1.546279, mapData, 1e-5)
+    mapData = osmread.parse_file("trimmed.osm")
+    startNode, endNode = getNodes(53.798395, -1.547876, 53.790613, -1.546279, mapData, 1e-5)
+    print(findNearestBusStop(startNode))
