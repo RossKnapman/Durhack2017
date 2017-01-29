@@ -50,14 +50,15 @@ def findNearestBusStop(inputNode):
     
     """ Returns the nearest bus stop to the input node """
     
+    # This doesn't work yet
+    
     busStops = []  # Empty list to store nodes representing bus stops   
     
     mapData = osmread.parse_file("trimmed.osm")    
     
     bus = 0
     for entity in mapData:
-        for tag in entity:
-            print (tag["highway"])
+        print(entity["highway"])
 #            if "bus_stop" in tag:
 #                print("Found bus stop")
 #                busStops.append(entity)
