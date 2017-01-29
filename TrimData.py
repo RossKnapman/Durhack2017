@@ -10,7 +10,7 @@ root = data.getroot()
 
 highwayNodes = []  # List to store node references in highways
 
-for node in root.findall("node"):  # Keep bus stops from data
+for node in root.findall("node"):  # Keep bus stops in data
     for tag in node:
         if tag.attrib["v"] == "bus_stop":
             highwayNodes.append(node.attrib["id"])
