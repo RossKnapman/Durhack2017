@@ -1,4 +1,4 @@
-import math # update to use numpy once we're sure server has it...
+import math # should update to use numpy once we're sure the production server has it...
 from bikeracks import latlongs
 
 def find_nearest_bike_parking(point):
@@ -8,7 +8,6 @@ def find_nearest_bike_parking(point):
         thisrack = haversine(point,rack)
         if thisrack < distance:
             distance = thisrack # its closest we've found
-            #print rack, distance
         
     return distance
 
@@ -21,8 +20,6 @@ def haversine(a,b):
     longb = math.radians(b[1])
     dlat = latb-lata
     dlong = longb-longa
-    
-    print lata,longa,latb,longb,dlat,dlong
     
     a = math.sin(dlat/2)**2 + math.cos(lata)*math.cos(latb) * math.sin(dlong/2)**2
     
