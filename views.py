@@ -5,6 +5,8 @@ from flask import render_template, redirect, request
 import traceback
 import logging
 
+from lib.distances import *
+
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
 def show_form():
@@ -27,7 +29,8 @@ def show_results():
     else:
         delta_h = elevation(start, end)
         dist = bike_dist(start, end)
-        nearest_lock = bike_park_dist(end)
+        nearest_lock = find_nearest_bike_parking(end)
+        #nearest_lock = bike_park_dist(end)
         #plus a bunch more cool things
         
         return render_template('resultstemplate.html',
