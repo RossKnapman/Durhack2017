@@ -2,6 +2,7 @@ import math # update to use numpy once we're sure server has it...
 from bikeracks import latlongs
 
 def find_nearest_bike_parking(point):
+    '''compare all known racks to a given point, return dist to the nearest one'''
     distance = 6e8 # a long way
     for rack in latlongs:
         thisrack = haversine(point,rack)
