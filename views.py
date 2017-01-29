@@ -6,6 +6,7 @@ import traceback
 import logging
 
 from lib.distances import *
+from lib.elevation import *
 
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
@@ -27,7 +28,7 @@ def show_results():
         return redirect('/error')
     
     else:
-        delta_h = elevation(start, end)
+        delta_h = getheight(start, end, KEY, BASEURL)
         dist = haversine(start, end)/1000 #in km
         nearest_lock = find_nearest_bike_parking(end)
         #plus a bunch more cool things
