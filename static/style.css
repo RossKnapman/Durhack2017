@@ -1,0 +1,19 @@
+.main-stuff{
+    font-family: sans-serif;
+    padding-left: 80px;
+}
+
+.top-bar {
+    color: white;
+    background-color: #7E317B; /*palatinate*/
+    font-family: sans-serif;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 20px;
+}
+
+.top-bar a{
+    color: white;
+    text-decoration: none;
+}

@@ -2,12 +2,18 @@
 <html>
 <head>
 <title>Durhack 2017 Project</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
+<div class='top-bar'>
+<a href='/index'>Home</a> | About | Contact Us
+</div>
+
+<div class='main-stuff'>
 <h1>Discover information about your journey</h1>
 
-<p>
+
     <form name="latlong" action="/results" method="POST">
         Starting from...<br />
         <input type="text" name="lat_a" placeholder="latitude">
@@ -17,11 +23,7 @@
         <input type="text" name="long_b"placeholder="longitude"> <br />
         <input type="submit" value="Search!" action="/results">
     </form>
-</p>
-
-<p>
-
-</p>
+</div>
 
 </body>
 

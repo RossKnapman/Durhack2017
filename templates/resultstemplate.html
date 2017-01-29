@@ -4,10 +4,16 @@
 
 <head>
 <title>Your results</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
+<p class='top-bar'>
+<a href='/index'>Home</a> | About | Contact Us
+<p>
+
+<div class='main-stuff'>
 <h3>Your journey details are shown below</h3>
 
 <p>
@@ -17,6 +23,8 @@ We've found some information about your cycle ride from ({{searched.lat_a}}, {{s
     <li>The total distance to cycle is {{dist}} </li>
     <li>You can lock your bike {{nearest_lock}} from your destination</li>
 </ul>
+
+</div>
 
 <body>
 
