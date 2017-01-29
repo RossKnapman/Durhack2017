@@ -1,2 +1,5 @@
+<<<<<<< HEAD
 # ignore bytecode
+=======
+>>>>>>> 14f198659a69bba3373c3f6751d58cdedcf05377
 *.pyc
