@@ -69,6 +69,15 @@ def findNearestBusStop(inputNode):
     return closestBusStop
     
     
+def bus_find_wrapper(a,b):
+    nodea, nodeb = getNodes(a[0],a[1],b[0],b[1],"trimmed.osm",1e-5)
+    busa = findNearestBusStop(nodea)
+    busb = findNearestBusStop(nodeb)
+    dista = getNodeDist(nodea,busa)
+    distb = getNodeDist(nodeb,busb)
+    return dista,disb
+    
+    
 if __name__ == "__main__":
     mapData = osmread.parse_file("trimmed.osm")
     startNode, endNode = getNodes(53.798395, -1.547876, 53.790613, -1.546279, mapData, 1e-5)
