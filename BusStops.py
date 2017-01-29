@@ -58,11 +58,10 @@ def findNearestBusStop(inputNode):
     
     bus = 0
     for entity in mapData:
-        print(entity["highway"])
-#            if "bus_stop" in tag:
-#                print("Found bus stop")
-#                busStops.append(entity)
-#                bus += 1
+        if isinstance(entity, osmread.Node) and 'highway' in entity.tags:
+            if entity.tags["highway"] == "bus_stop":
+                busStops.append(entity)
+                bus += 1
     print("Bus", bus)
         
     shortestDistance = 100
